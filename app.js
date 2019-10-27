@@ -12,9 +12,9 @@ GAME RULES:
 var scores, roundScore, activePlayer; 
 scores =[0,0];
 roundScore = 0;
-activePlayer = 1;
+activePlayer = 0;
 
-//document.querySelector('#current-' + activePlayer).textContent = dice;
+
 
 //var x = document.querySelector('#score-0').textContent;
 //console.log(x);
@@ -34,13 +34,19 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
     // 2 display the result
     var diceDom = document.querySelector('.dice');
     diceDom.style.display = 'block';
-    diceDom.src = 'dice-' + dice + '.png';
+    diceDom.src = 'images/dice-' + dice + '.png';
 
+    // 3 update the round score if the rolled number is not a 1 
+    if (dice !== 1){
+        //add score
+        roundScore += dice;
+        document.querySelector('#current-' + activePlayer).textContent = roundScore;
 
+    }else {
+        // change to next player
+        activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
 
-
-    // 3 update the random score if the rolled number is not a 1 
-
+    }
 
 
 });
